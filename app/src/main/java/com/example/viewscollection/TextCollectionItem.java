@@ -1,7 +1,5 @@
 package com.example.viewscollection;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -14,10 +12,13 @@ public class TextCollectionItem implements CollectionItem {
 
     @Override
     public void show(ViewGroup container) {
-        View root = LayoutInflater
-                .from(container.getContext())
-                .inflate(R.layout.text_item, container, false);
-        TextView textView = root.findViewById(R.id.text);
+        TextView textView = new TextView(container.getContext());
+        textView.setLayoutParams(
+                new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+        );
         textView.setText(text);
         container.addView(textView);
     }
