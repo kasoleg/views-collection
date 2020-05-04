@@ -2,7 +2,7 @@ package com.example.viewscollection;
 
 import android.view.ViewGroup;
 
-public class SimpleViewsCollection implements ViewsCollection {
+public final class SimpleViewsCollection implements ViewsCollection {
     private final ViewGroup container;
 
     public SimpleViewsCollection(ViewGroup container) {
