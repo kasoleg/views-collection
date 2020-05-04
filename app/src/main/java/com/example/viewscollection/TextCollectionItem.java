@@ -13,12 +13,6 @@ public class TextCollectionItem implements CollectionItem {
     @Override
     public void show(ViewGroup container) {
         TextView textView = new TextView(container.getContext());
-        textView.setLayoutParams(
-                new ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-        );
         textView.setText(text);
         container.addView(textView);
     }

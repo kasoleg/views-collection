@@ -11,8 +11,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final LinearLayout container = new LinearLayout(this);
-        container.setOrientation(LinearLayout.VERTICAL);
+        final ViewGroup container = new VerticalLinearLayout(
+                new LinearLayout(this)
+        ).build();
         setContentView(container);
         new SimpleViewsCollection(container)
                 .show(
