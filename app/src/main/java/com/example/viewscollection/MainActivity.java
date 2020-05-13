@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 new Background(
                         new SimpleText(
                                 "Text 1",
-                                new Paint(),
                                 new Rect(
                                         0,
                                         getBounds().height() - point2.y,

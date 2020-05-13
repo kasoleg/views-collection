@@ -20,6 +20,14 @@ public final class SimpleText implements UiElement {
         this.layout = layout;
     }
 
+    public SimpleText(final String text) {
+        this(text, new Paint(), new Rect());
+    }
+
+    public SimpleText(final String text, final Rect layout) {
+        this(text, new Paint(), layout);
+    }
+
     @Override
     public void draw(final Canvas canvas) {
         paint.getTextBounds(text, 0, text.length(), bounds);
