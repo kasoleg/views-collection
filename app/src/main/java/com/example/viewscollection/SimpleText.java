@@ -21,7 +21,7 @@ public final class SimpleText implements UiElement {
     }
 
     @Override
-    public void show(final Canvas canvas) {
+    public void draw(final Canvas canvas) {
         paint.getTextBounds(text, 0, text.length(), bounds);
         int height = Math.abs(bounds.top);
         int x = layout.left;

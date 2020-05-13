@@ -1,6 +1,5 @@
 package com.example.viewscollection;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -8,8 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                                 new Rect(0, 72, 1080, 1920)
                         ),
                         new ColoredPaint(Color.GREEN).paint()
-                ).show(canvas);
+                ).draw(canvas);
             }
 
             @Override
