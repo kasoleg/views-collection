@@ -3,28 +3,24 @@ package com.example.viewscollection;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.text.Layout;
-import android.util.Log;
-import android.util.Size;
-import android.view.View;
 
-public final class SimpleText implements UiElement {
+public final class Text implements UiElement {
     private final String text;
     private final Paint paint;
     private final Rect layout;
     private final Rect bounds = new Rect();
 
-    public SimpleText(final String text, final Paint paint, final Rect layout) {
+    public Text(final String text, final Paint paint, final Rect layout) {
         this.text = text;
         this.paint = paint;
         this.layout = layout;
     }
 
-    public SimpleText(final String text) {
+    public Text(final String text) {
         this(text, new Paint(), new Rect());
     }
 
-    public SimpleText(final String text, final Rect layout) {
+    public Text(final String text, final Rect layout) {
         this(text, new Paint(), layout);
     }
 

@@ -3,7 +3,6 @@ package com.example.viewscollection;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             public void draw(@NonNull Canvas canvas) {
                 canvas.drawColor(Color.WHITE);
                 new Background(
-                        new SimpleText(
+                        new Text(
                                 "Text 1",
                                 new Rect(
                                         0,
