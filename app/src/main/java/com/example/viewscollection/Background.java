@@ -6,17 +6,17 @@ import android.graphics.Rect;
 
 public final class Background implements UiElement {
     private final UiElement view;
-    private final Paint paint;
+    private final Brush brush;
 
-    public Background(final UiElement view, final Paint paint) {
+    public Background(final UiElement view, final Brush brush) {
         this.view = view;
-        this.paint = paint;
+        this.brush = brush;
     }
 
     @Override
     public void draw(Canvas canvas) {
         Rect rect = view.measure();
-        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect, brush.paint());
         view.draw(canvas);
     }
 

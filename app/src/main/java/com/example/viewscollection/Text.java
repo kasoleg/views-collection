@@ -6,26 +6,27 @@ import android.graphics.Rect;
 
 public final class Text implements UiElement {
     private final String text;
-    private final Paint paint;
+    private final Brush brush;
     private final Rect layout;
     private final Rect bounds = new Rect();
 
-    public Text(final String text, final Paint paint, final Rect layout) {
+    public Text(final String text, final Brush brush, final Rect layout) {
         this.text = text;
-        this.paint = paint;
+        this.brush = brush;
         this.layout = layout;
     }
 
     public Text(final String text) {
-        this(text, new Paint(), new Rect());
+        this(text, new DefaultBrush(), new Rect());
     }
 
     public Text(final String text, final Rect layout) {
-        this(text, new Paint(), layout);
+        this(text, new DefaultBrush(), layout);
     }
 
     @Override
     public void draw(final Canvas canvas) {
+        Paint paint = brush.paint();
         paint.getTextBounds(text, 0, text.length(), bounds);
         int height = Math.abs(bounds.top);
         int x = layout.left;
@@ -35,7 +36,7 @@ public final class Text implements UiElement {
 
     @Override
     public Rect measure() {
-        paint.getTextBounds(text, 0, text.length(), bounds);
+        brush.paint().getTextBounds(text, 0, text.length(), bounds);
         final int height = Math.abs(bounds.top);
         int left = layout.left;
         int top = layout.top;

@@ -1,17 +1,18 @@
 package com.example.viewscollection;
 
-import android.graphics.Color;
 import android.graphics.Paint;
 
-public final class ColoredPaint {
+public final class ColorBrush implements Brush {
     private final int color;
+    private final Paint paint;
 
-    public ColoredPaint(final int color) {
+    public ColorBrush(final int color) {
         this.color = color;
+        paint = new Paint();
     }
 
-    Paint paint() {
-        Paint paint = new Paint();
+    @Override
+    public Paint paint() {
         paint.setColor(color);
         return paint;
     }

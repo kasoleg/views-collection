@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,21 +21,32 @@ public class MainActivity extends AppCompatActivity {
         final Point point1 = new Point();
         final Point point2 = new Point();
         getWindowManager().getDefaultDisplay().getCurrentSizeRange(point1, point2);
+        /*Log.d("oleg", "onCreate: " + point1);
+        Log.d("oleg", "onCreate: " + point2);*/
+        //getWindowManager().getDefaultDisplay().getSize(point1);
         getWindow().setBackgroundDrawable(new Drawable() {
             @Override
             public void draw(@NonNull Canvas canvas) {
                 canvas.drawColor(Color.WHITE);
+                final int top;
+                final int rotation = getWindowManager().getDefaultDisplay().getRotation();
+                if (rotation == 0 || rotation == 2) {
+                    top = getBounds().height() - point2.y;
+                } else {
+                    top = getBounds().height() - point1.y;
+                }
                 new Background(
                         new Text(
                                 "Text 1",
+                                new SizeBrush(150),
                                 new Rect(
                                         0,
-                                        getBounds().height() - point2.y,
+                                        top,
                                         getBounds().width(),
                                         getBounds().height()
                                 )
                         ),
-                        new ColoredPaint(Color.GREEN).paint()
+                new ColorBrush(Color.GREEN)
                 ).draw(canvas);
             }
 
