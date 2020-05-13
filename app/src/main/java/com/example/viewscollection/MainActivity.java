@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final Point point1 = new Point();
+        final Point point2 = new Point();
+        getWindowManager().getDefaultDisplay().getCurrentSizeRange(point1, point2);
         getWindow().setBackgroundDrawable(new Drawable() {
             @Override
             public void draw(@NonNull Canvas canvas) {
@@ -25,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
                         new SimpleText(
                                 "Text 1",
                                 new Paint(),
-                                new Rect(0, 72, 1080, 1920)
+                                new Rect(
+                                        0,
+                                        getBounds().height() - point2.y,
+                                        getBounds().width(),
+                                        getBounds().height()
+                                )
                         ),
                         new ColoredPaint(Color.GREEN).paint()
                 ).draw(canvas);
