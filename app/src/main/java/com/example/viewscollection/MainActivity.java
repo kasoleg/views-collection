@@ -7,7 +7,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 new Background(
                         new Text(
                                 "Text 1",
-                                new SizeBrush(150),
+                                new TextSizeBrush(150),
                                 new Rect(
                                         0,
                                         top,
