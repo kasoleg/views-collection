@@ -3,7 +3,6 @@ package com.example.viewscollection;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -29,42 +28,30 @@ public final class MultilineText implements UiElement {
         final float[] widths = new float[text.length()];
         paint.getTextWidths(text, 0, text.length(), widths);
         int width = 0;
-        int linesCount = 0;
+        int height = 0;
         int start = 0;
         for (int i = 0; i < text.length(); i++) {
             width += widths[i];
-            if (width > rect.right - rect.left) {
-                Rect bounds = new Rect();
-                paint.getTextBounds(text, 0, text.length(), bounds);
-                int height = Math.abs(bounds.top) + Math.abs(bounds.bottom);
-                new Text(
-                        text.substring(start, i - 1),
+            if (width > rect.right - rect.left || i == text.length() - 1) {
+                final Text text = new Text(
+                        this.text.substring(start, i - 1),
                         brush,
                         new Rect(
                                 rect.left,
-                                rect.top + linesCount * height,
+                                rect.top + height,
                                 rect.right,
                                 rect.bottom
                         )
-                ).draw(canvas);
+                );
+                final Rect measure = text.measure();
+                int height1 = Math.abs(measure.bottom) - Math.abs(measure.top);
+                height += height1;
+                text.draw(canvas);
                 linesCount++;
                 start = i - 1;
                 width = 0;
             }
         }
-        Rect bounds = new Rect();
-        paint.getTextBounds(text, 0, text.length(), bounds);
-        int height = Math.abs(bounds.top) + Math.abs(bounds.bottom);
-        new Text(
-                text.substring(start),
-                brush,
-                new Rect(
-                        rect.left,
-                        rect.top + linesCount * height,
-                        rect.right,
-                        rect.bottom
-                )
-        ).draw(canvas);
     }
 
     @Override
@@ -73,18 +60,27 @@ public final class MultilineText implements UiElement {
         final float[] widths = new float[text.length()];
         paint.getTextWidths(text, 0, text.length(), widths);
         int width = 0;
-        int linesCount = 0;
+        int height = 0;
+        int start = 0;
         for (int i = 0; i < text.length(); i++) {
             width += widths[i];
-            if (width > rect.right - rect.left) {
-                linesCount++;
+            if (width > rect.right - rect.left || i == text.length() - 1) {
+                final Text text = new Text(
+                        this.text.substring(start, i - 1),
+                        brush,
+                        new Rect(
+                                rect.left,
+                                rect.top + height,
+                                rect.right,
+                                rect.bottom
+                        )
+                );
+                final Rect measure = text.measure();
+                height += Math.abs(measure.bottom) - Math.abs(measure.top);
                 width = 0;
+                start = i - 1;
             }
         }
-        Rect bounds = new Rect();
-        paint.getTextBounds(text, 0, text.length(), bounds);
-        int height = Math.abs(bounds.top) + Math.abs(bounds.bottom);
-        linesCount++;
-        return new Rect(rect.left, rect.top, rect.right, rect.top + linesCount * height);
+        return new Rect(rect.left, rect.top, rect.right, rect.top + height);
     }
 }
