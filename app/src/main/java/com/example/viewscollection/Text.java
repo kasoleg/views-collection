@@ -37,7 +37,7 @@ public final class Text implements UiElement {
     @Override
     public Rect measure() {
         brush.paint().getTextBounds(text, 0, text.length(), bounds);
-        final int height = Math.abs(bounds.top);
+        final int height = Math.abs(bounds.top) + Math.abs(bounds.bottom);
         int left = layout.left;
         int top = layout.top;
         int right = left + bounds.right;

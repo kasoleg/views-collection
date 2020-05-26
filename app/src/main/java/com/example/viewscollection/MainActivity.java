@@ -33,19 +33,19 @@ public class MainActivity extends AppCompatActivity {
                             top = getBounds().height() - point1.y;
                         }
                         new Background(
-                                new Text(
-                                        "Text 1",
-                                        new DensityTextSizeBrush(
-                                                30,
-                                                getResources().getDisplayMetrics().density
+                                new MultilineText(
+                                                "Cyclone Amphan (satellite image shown) impacts eastern India and Bangladesh, killing at least eighty-two people and forcing the evacuation of more than four million others.",
+                                                new DensityTextSizeBrush(
+                                                        30,
+                                                        getResources().getDisplayMetrics().density
+                                                ),
+                                                new Rect(
+                                                        0,
+                                                        top,
+                                                        getBounds().width(),
+                                                        getBounds().height()
+                                                )
                                         ),
-                                        new Rect(
-                                                0,
-                                                top,
-                                                getBounds().width(),
-                                                getBounds().height()
-                                        )
-                                ),
                                 new ColorBrush(Color.GREEN)
                         ).draw(canvas);
                     }
